@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogando | Logic Pro</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/quiz.css">
+    <!-- JS -->
+    <script src="/assets/js/quiz.js" defer></script>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a class="back-btn" href="/index.html"><i class="bi bi-arrow-left-short"></i></a>
+
+            <img src="/assets/img/trofeu.png">
+            <h2>Logic Pro</h2>
+        </header>
+
+        <main>
+            <div class="quiz-container">
+                <div class="question-box">
+                    <p class="question"></p>
+                </div>
+
+                <div class="util-box">
+                    <p class="timer"></p>
+
+                    <p>Pontuação: <span class="points">0</span></p>
+                </div>
+
+                <div class="answer-box">
+                    <button class="true answer">
+                        <span>A.</span> Verdadeiro
+                        <span class="radio-circle">
+                            <span class="radio-fill"></span>
+                        </span>
+                    </button>
+                
+                    <button class="false answer">
+                        <span>B.</span> Falso
+                        <span class="radio-circle">
+                            <span class="radio-fill"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <div id="feedback" class="feedback hidden">
+            <p id="feedback-text"></p>
+        </div>
+    </div>
+</body>
+
+</html>
