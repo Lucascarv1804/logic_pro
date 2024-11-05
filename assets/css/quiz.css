@@ -15,6 +15,7 @@
 
 .container {
     height: 100vh;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,6 +33,7 @@ header {
     gap: 8px;
     width: 100vw;
     padding: 1rem;
+
     position: relative;
 }
 
@@ -62,37 +64,9 @@ header img {
 
 /* MAIN */
 main {
-    height: 60%;
-    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.result-box {
-    margin: 1rem 0;
-    position: absolute;
-    top: 3%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.result {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 1.5rem;
-    width: 100px;
-    border-radius: 10px;
-    background-color: var(--main-color);
-    color: #0C092A;
-    border: 1px solid #c9c9c9;
-}
-
-.off {
-    display: none;
+    height: 80vh;
 }
 
 .quiz-container {

@@ -1,10 +1,13 @@
 const options = document.querySelectorAll('.answer');
 
 options.forEach(option => {
-
     option.addEventListener('click', () => {
         options.forEach(a => a.classList.remove('selected'));
         option.classList.add('selected');
+        
+        // Verificar a resposta
+        const userAnswer = option.classList.contains('true');
+        checkAnswer(userAnswer);
     });
 });
 
@@ -25,7 +28,6 @@ let currentQuestionIndex = 0;
 let score = 0;
 let timer;
 
-
 function displayQuestion() {
     const questionTxt = document.querySelector(".question");
     questionTxt.textContent = questions[currentQuestionIndex].text;
@@ -33,7 +35,6 @@ function displayQuestion() {
 
 function startTimer() {
     let timeLeft = 60;
-
     document.querySelector(".timer").textContent = timeLeft;
 
     timer = setInterval(() => {
@@ -41,9 +42,83 @@ function startTimer() {
         document.querySelector(".timer").textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
+            showFeedback(false);
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < questions.length) {
+                setTimeout(() => {
+                    displayQuestion();
+                    startTimer();
+                    resetOptions();
+                }, 2000); // Espera 2 segundos antes de avançar
+            } else {
+                endGame();
+            }
         }
     }, 1000);
 }
 
+function checkAnswer(userAnswer) {
+    clearInterval(timer);
+    const correctAnswer = questions[currentQuestionIndex].answer;
+
+    if (userAnswer === correctAnswer) {
+        score += 10;
+        showFeedback(true); // Resposta correta
+        updateScore(score);
+    } else {
+        showFeedback(false); // Resposta incorreta
+    }
+
+    currentQuestionIndex++;
+
+    // Avançar para a próxima pergunta ou terminar o jogo
+    if (currentQuestionIndex < questions.length) {
+        setTimeout(() => {
+            displayQuestion();
+            startTimer();
+            resetOptions();
+        }, 2000); // Esperar 2 segundos antes de mostrar a próxima pergunta
+    } else {
+        endGame();
+    }
+}
+
+function showFeedback(isCorrect) {
+    const feedback = document.getElementById("feedback");
+    const feedbackText = document.getElementById("feedback-text");
+    feedback.classList.remove("hidden");
+    feedback.classList.add("visible");
+
+    feedbackText.textContent = isCorrect ? "Correto!" : "Incorreto!";
+
+    setTimeout(() => {
+        feedback.classList.remove("visible");
+        feedback.classList.add("hidden");
+    }, 2000); // Mostrar feedback por 2 segundos
+}
+
+function resetOptions() {
+    options.forEach(option => {
+        option.classList.remove('selected');
+    });
+}
+
+function endGame() {
+    clearInterval(timer);
+    const questionTxt = document.querySelector(".question");
+    questionTxt.textContent = `Fim do jogo! Sua pontuação foi de: ${score}`;
+    // Desabilitar as opções
+    options.forEach(option => {
+        option.disabled = true;
+    });
+}
+
+function updateScore(newScore) {
+    const scoreElement = document.querySelector(".points");
+    scoreElement.textContent = newScore;
+}
+
+// Inicialização do jogo
 displayQuestion();
 startTimer();
