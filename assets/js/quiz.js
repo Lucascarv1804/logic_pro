@@ -5,7 +5,6 @@ options.forEach(option => {
         options.forEach(a => a.classList.remove('selected'));
         option.classList.add('selected');
         
-        // Verificar a resposta
         const userAnswer = option.classList.contains('true');
         checkAnswer(userAnswer);
     });
@@ -50,7 +49,7 @@ function startTimer() {
                     displayQuestion();
                     startTimer();
                     resetOptions();
-                }, 2000); // Espera 2 segundos antes de avançar
+                }, 2000);
             } else {
                 endGame();
             }
@@ -64,21 +63,20 @@ function checkAnswer(userAnswer) {
 
     if (userAnswer === correctAnswer) {
         score += 10;
-        showFeedback(true); // Resposta correta
+        showFeedback(true);
         updateScore(score);
     } else {
-        showFeedback(false); // Resposta incorreta
+        showFeedback(false);
     }
 
     currentQuestionIndex++;
 
-    // Avançar para a próxima pergunta ou terminar o jogo
     if (currentQuestionIndex < questions.length) {
         setTimeout(() => {
             displayQuestion();
             startTimer();
             resetOptions();
-        }, 2000); // Esperar 2 segundos antes de mostrar a próxima pergunta
+        }, 2000);
     } else {
         endGame();
     }
@@ -95,7 +93,7 @@ function showFeedback(isCorrect) {
     setTimeout(() => {
         feedback.classList.remove("visible");
         feedback.classList.add("hidden");
-    }, 2000); // Mostrar feedback por 2 segundos
+    }, 2000);
 }
 
 function resetOptions() {
@@ -108,7 +106,7 @@ function endGame() {
     clearInterval(timer);
     const questionTxt = document.querySelector(".question");
     questionTxt.textContent = `Fim do jogo ${nome}! Sua pontuação foi de: ${score}`;
-    // Desabilitar as opções
+
     options.forEach(option => {
         option.disabled = true;
     });
@@ -128,7 +126,6 @@ function adicionarRanking(nome, score) {
     const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
     const maxRanking = 5;
 
-    // Adicionar o usuário ao ranking se ele for melhor que as 5 pessoas que já estão no ranking
     if (ranking.length < maxRanking || ranking.some(u => u.score < usuario.score)) {
         ranking.push(usuario);
         ranking.sort((a, b) => b.score - a.score);

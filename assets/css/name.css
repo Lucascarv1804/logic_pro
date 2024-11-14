@@ -85,7 +85,8 @@ main {
 }
 
 .label-box {
-    margin-bottom: 1rem; /* Update 1 */
+    margin-bottom: 1rem;
+    /* Update 1 */
 }
 
 .label-text {
@@ -113,7 +114,9 @@ main {
 }
 
 .error-box {
-    min-height: 1rem; /* Update 3 */ /* Update 3 */
+    min-height: 1rem;
+    /* Update 3 */
+    /* Update 3 */
 }
 
 .error-text {
@@ -121,13 +124,16 @@ main {
     font-size: 0.875rem;
 }
 
-.input-button-space { /* Update 2 */
+.input-button-space {
+    /* Update 2 */
     min-height: 2rem;
-    margin-top: 0.5rem; /* Update 2 */
+    margin-top: 0.5rem;
+    /* Update 2 */
 }
 
 .button-play {
-    margin-top: 0.5rem; /* Update 2 */
+    margin-top: 0.5rem;
+    /* Update 2 */
 }
 
 input[type="submit"] {
@@ -156,4 +162,19 @@ input[type="submit"]:focus {
     .name-container {
         padding: 1.5rem;
     }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: .6rem;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.logo:hover {
+    background-color: #4a3bbb;
 }

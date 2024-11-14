@@ -101,7 +101,8 @@ main {
     font-weight: bold;
 }
 
-.timer-box, .answer-box {
+.timer-box,
+.answer-box {
     color: var(--secondary-txt-color);
 }
 
@@ -200,4 +201,19 @@ main {
 
 .hidden {
     display: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: .6rem;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.logo:hover {
+    background-color: #4a3bbb;
 }
