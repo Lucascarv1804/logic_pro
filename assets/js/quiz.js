@@ -1,5 +1,5 @@
 const options = document.querySelectorAll('.answer');
-
+const nome = localStorage.getItem("name");
 options.forEach(option => {
     option.addEventListener('click', () => {
         options.forEach(a => a.classList.remove('selected'));
@@ -107,11 +107,12 @@ function resetOptions() {
 function endGame() {
     clearInterval(timer);
     const questionTxt = document.querySelector(".question");
-    questionTxt.textContent = `Fim do jogo! Sua pontuação foi de: ${score}`;
+    questionTxt.textContent = `Fim do jogo ${nome}! Sua pontuação foi de: ${score}`;
     // Desabilitar as opções
     options.forEach(option => {
         option.disabled = true;
     });
+    adicionarRanking(nome, score);
 }
 
 function updateScore(newScore) {
@@ -119,6 +120,24 @@ function updateScore(newScore) {
     scoreElement.textContent = newScore;
 }
 
-// Inicialização do jogo
+function adicionarRanking(nome, score) {
+    const usuario = {
+        nome: nome,
+        score: score
+    };
+    const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+    const maxRanking = 5;
+
+    // Adicionar o usuário ao ranking se ele for melhor que as 5 pessoas que já estão no ranking
+    if (ranking.length < maxRanking || ranking.some(u => u.score < usuario.score)) {
+        ranking.push(usuario);
+        ranking.sort((a, b) => b.score - a.score);
+        ranking.splice(maxRanking);
+        const newJson = JSON.stringify(ranking);
+        localStorage.setItem("ranking", newJson);
+    }
+}
+
 displayQuestion();
 startTimer();
+console.log("Ranking:", localStorage.getItem("ranking"));
