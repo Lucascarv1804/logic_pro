@@ -67,14 +67,9 @@ main {
     display: flex;
     align-items: center;
     height: 80vh;
+    margin: 0 3rem;
 }
 
-/* Your existing styles remain unchanged */
-
-/* Styling for the form */
-/* Your existing styles remain unchanged */
-
-/* Styling for the form */
 .name-container {
     background-color: var(--main-color);
     border-radius: 8px;
@@ -161,6 +156,7 @@ input[type="submit"]:focus {
 @media (max-width: 480px) {
     .name-container {
         padding: 1.5rem;
+        width: 350px;
     }
 }
 
