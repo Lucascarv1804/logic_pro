@@ -93,7 +93,7 @@ function showFeedback(isCorrect) {
     setTimeout(() => {
         feedback.classList.remove("visible");
         feedback.classList.add("hidden");
-    }, 2000);
+    }, 1200);
 }
 
 function resetOptions() {
